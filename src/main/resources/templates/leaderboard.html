@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="//datatables.net/download/build/nightly/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+ 
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="//datatables.net/download/build/nightly/jquery.dataTables.js"></script>
+ 
+        <meta charset=utf-8 />
+        <title>BeingZero</title>
+        
+    </head>
+    <style type="text/css">
+    	body {
+		  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+		  margin: 0;
+		  padding: 0;
+		  color: #333;
+		  background-color: #fff;
+		}
+    	
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').dataTable( {
+        	//dom : 'lpf',
+        	//pagingType : "simple",
+        	"lengthMenu" : [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        	//"columnDefs" : [ {"targets":8, "orderable":false,}],
+         	"columns": [
+         		{ "data": "rank", defaultContent: ''},
+                { "data": "userID" },
+                { "data": "userName" },
+                { "data": "completionResult" },
+                { "data": "executionResult" },
+                { "data": "score" },
+                { "data": "language" },
+                { "data": "submissionDate"}
+            ],
+            drawCallback: function () {
+              api = this.api();
+              var arr1 = api.columns(5).data()[0];  //get array of column 6 (score)
+              var set = new Set(arr1);
+              //console.log(set);
+              //console.log(arr1);
+              var arr = [...set];
+              //console.log("final array!!!!!")
+              //console.log(arr);
+              var sorted = arr.slice().sort(function(a,b){return b-a});
+              var ranks = arr.slice().map(function(v){ return sorted.indexOf(v)+1 });
+              //console.log(sorted);
+              //console.log("final ranks!!!!!")
+              //console.log(ranks);
+              // interate through each row
+              api.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+                var data = this.data();
+                console.log(data.userID, data.score, ranks[arr.indexOf(data.score)]);
+                data.rank = ranks[arr.indexOf(data.score)];  //set the rank column = the array index of the extn in the ranked array
+                //$('#example tbody tr:eq('+rowIdx+') td:eq(4)').html(ranks[arr.indexOf(data.extn)]);
+                this.data(data);
+              } );
+            api.rows().invalidate();
+          } 
+        } );
+    } );
+    </script>
+    <body width="80%">
+        <div class="container">
+        	<h3 align = "center">[[${problemID}]]</h3>
+            <table id="example" class="display" >
+                <thead>
+                    <tr>
+                    	<th>Rank</th>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Completion Result</th>
+                        <th>Execution Result </th>
+                        <th>Score</th>
+                        <th>Language</th>
+                        <th>Submission Date</th>
+                    </tr>
+                </thead>
+		        <tbody>
+		        <tr th:each="record : ${RankTable}">     
+		            <td data="rank"></td>
+		            <td th:text="${record.userID}" data="userID"></td>
+		            <td th:text="${record.userName}" data="userName"></td>
+		            <td th:text="${record.completionResult}" data="completionResult"></td>
+		            <td th:text="${record.executionResult}" data="executionResult"></td>
+		            <td th:text="${record.score}" data="score" ></td>
+		            <td th:text="${record.language}" data="language"></td>
+		            <td th:text="${record.submissionDate}" data="submissionDate"></td>
+		        </tr>
+		        </tbody>
+            </table>
+        </div>
+    </body>
+</html>
+ 
+ 
+ 
