@@ -8,7 +8,7 @@
 	<div align="center", margin="10px">
 		<h1>Add Records</h1>
 
-		<form action='#' th:action='@{/inputdata}' method='post'
+		<form action='#' th:action='@{/inputdata}' method='post' id = "inputform"
 			th:object="${scoreBoard}">
 			<table>
 				<tr>
@@ -48,10 +48,9 @@
 					<td><input type="datetime-local" th:field='*{submissionDate}' /></td>
 				</tr>
 				</table>
-				
 				<button type="submit">Add Data</button>
 		</form>
-		
 	</div>
 </body>
+
 </html>

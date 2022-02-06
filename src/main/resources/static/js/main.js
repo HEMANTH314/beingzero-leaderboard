@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
         $('#example').dataTable( {
         	//dom : 'lpf',
@@ -41,3 +40,4 @@ $(document).ready(function() {
           } 
         } );
     } );
+    

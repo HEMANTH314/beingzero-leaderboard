@@ -61,6 +61,19 @@ public class ScoreBoard {
 		this.language = language;
 	}
 
+	public ScoreBoard(String submisionID, String userID, String userName, String problemID,
+			boolean completionResult, boolean executionResult, int score, String submissionDate, String language) {
+		super();
+		this.submisionID = submisionID;
+		this.userID = userID;
+		this.userName = userName;
+		this.problemID = problemID;
+		this.completionResult = completionResult;
+		this.executionResult = executionResult;
+		this.score = score;
+		this.submissionDate = submissionDate;
+		this.language = language;
+	}
 	public long getID() {
 		return ID;
 	}
