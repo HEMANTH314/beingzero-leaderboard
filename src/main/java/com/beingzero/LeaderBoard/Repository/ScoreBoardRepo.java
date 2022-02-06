@@ -7,6 +7,6 @@ import com.beingzero.LeaderBoard.Model.ScoreBoard;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface ScoreBoardRepo extends JpaRepository<ScoreBoard, Long>{
+public interface ScoreBoardRepo extends JpaRepository<ScoreBoard, String>{
 
 }

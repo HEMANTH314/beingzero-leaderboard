@@ -1,8 +1,8 @@
 package com.beingzero.LeaderBoard.Model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,10 +10,9 @@ import javax.persistence.Table;
 @Table(name = "ScoreBoard")
 public class ScoreBoard {
 	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long ID;
-	
+	//@GeneratedValue(strategy =GenerationType.AUTO)
 	private String submisionID;
 	
 	private String userID;
@@ -35,7 +34,7 @@ public class ScoreBoard {
 	
 	@Override
 	public String toString() {
-		return "ScoreBoard [ID=" + ID + ", submisionID=" + submisionID + ", userID=" + userID + ", userName=" + userName
+		return "ScoreBoard [submisionID=" + submisionID + ", userID=" + userID + ", userName=" + userName
 				+ ", problemID=" + problemID + ", completionResult=" + completionResult + ", executionResult="
 				+ executionResult + ", score=" + score + ", submissionDate=" + submissionDate + ", language=" + language
 				+ "]";
@@ -46,20 +45,6 @@ public class ScoreBoard {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ScoreBoard(long iD, String submisionID, String userID, String userName, String problemID,
-			boolean completionResult, boolean executionResult, int score, String submissionDate, String language) {
-		super();
-		ID = iD;
-		this.submisionID = submisionID;
-		this.userID = userID;
-		this.userName = userName;
-		this.problemID = problemID;
-		this.completionResult = completionResult;
-		this.executionResult = executionResult;
-		this.score = score;
-		this.submissionDate = submissionDate;
-		this.language = language;
-	}
 
 	public ScoreBoard(String submisionID, String userID, String userName, String problemID,
 			boolean completionResult, boolean executionResult, int score, String submissionDate, String language) {
@@ -73,13 +58,6 @@ public class ScoreBoard {
 		this.score = score;
 		this.submissionDate = submissionDate;
 		this.language = language;
-	}
-	public long getID() {
-		return ID;
-	}
-
-	public void setID(long iD) {
-		ID = iD;
 	}
 
 	public String getSubmisionID() {
@@ -152,6 +130,28 @@ public class ScoreBoard {
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(completionResult, executionResult, language, problemID, score, submisionID, submissionDate,
+				userID, userName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ScoreBoard other = (ScoreBoard) obj;
+		return completionResult == other.completionResult && executionResult == other.executionResult
+				&& Objects.equals(language, other.language) && Objects.equals(problemID, other.problemID)
+				&& score == other.score && Objects.equals(submisionID, other.submisionID)
+				&& Objects.equals(submissionDate, other.submissionDate) && Objects.equals(userID, other.userID)
+				&& Objects.equals(userName, other.userName);
 	}
 
 	
