@@ -1,20 +1,14 @@
 package com.beingzero.LeaderBoard.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.beingzero.LeaderBoard.Model.LeadBoard;
 import com.beingzero.LeaderBoard.Model.ScoreBoard;
@@ -75,47 +69,7 @@ public class MainContorller {
 		}
 		return "inputdata";
 	}
-	
-	/*Adding data using url */
-	@PostMapping("/updatedata")
-	///inputdata?submisionID=1&userID=Hemanth200&userName=Hemu&problemID=1&executionResult=true&completionResult=true&score=30&language=java&submissionDate=2023-02-06T13:16
-	public void adddata1(@RequestParam String submisionID, @RequestParam String userID,
-			@RequestParam String userName, @RequestParam String problemID, @RequestParam boolean executionResult,
-			@RequestParam boolean completionResult, @RequestParam int score,
-			@RequestParam String language, @RequestParam String submissionDate) {
-		
-		/* Save a new record into socre table */
-		ScoreBoard scoreBoard = new ScoreBoard(submisionID,  userID,  userName,  problemID,
-				 completionResult,  executionResult,  score,  submissionDate,  language);
-		scoreBoardRepo.save(scoreBoard);
-		//System.out.println(scoreBoard);
-		
-		/* Updating user table */
-		User user = new User(scoreBoard.getUserID(),scoreBoard.getUserName());
-		//System.out.println(user);
-		userRepo.save(user);
-		
-		/* Updating lead table */
-		UserIDProblemIDkey userIDProblemIDkey = new UserIDProblemIDkey(scoreBoard.getUserID(),scoreBoard.getProblemID());
-		LeadBoard tmp = leadBoardRepo.findById(userIDProblemIDkey).orElse(null);
-		if(tmp == null) {
-			LeadBoard leadBoard = new LeadBoard(scoreBoard.getUserID(), scoreBoard.getUserName(), scoreBoard.getSubmisionID(),
-					scoreBoard.getProblemID(), scoreBoard.isCompletionResult(), scoreBoard.isExecutionResult(), 
-					scoreBoard.getScore(), scoreBoard.getSubmissionDate(), scoreBoard.getLanguage());
-			leadBoardRepo.save(leadBoard);
-		}else if(tmp.getScore() < scoreBoard.getScore()){
-			tmp.setSubmisionID(scoreBoard.getSubmisionID());
-			tmp.setCompletionResult(scoreBoard.isCompletionResult());
-			tmp.setExecutionResult(scoreBoard.isExecutionResult());
-			tmp.setLanguage(scoreBoard.getLanguage());
-			tmp.setSubmissionDate(scoreBoard.getSubmissionDate());
-			tmp.setScore(scoreBoard.getScore());
-			leadBoardRepo.save(tmp);
-		}
-		//return "inputdata";
-	}
-	
-	
+
 	@GetMapping("leaderboard/{problemID}")
 	public String test1(Model model, @PathVariable("problemID") String problemID) {
 		List<LeadBoard>  RankTable = leadBoardRepo.findAllByProblemIDOrderByScoreDesc(problemID);
@@ -125,7 +79,51 @@ public class MainContorller {
 		return "leaderboard";
 	}
 	
+	
 }
+
+///*Adding data using url */
+//@PostMapping("/updatedata")
+/////inputdata?submisionID=1&userID=Hemanth200&userName=Hemu&problemID=1&executionResult=true&completionResult=true&score=30&language=java&submissionDate=2023-02-06T13:16
+//public void adddata1(@RequestParam String submisionID, @RequestParam String userID,
+//		@RequestParam String userName, @RequestParam String problemID, @RequestParam boolean executionResult,
+//		@RequestParam boolean completionResult, @RequestParam int score,
+//		@RequestParam String language, @RequestParam String submissionDate) {
+//	
+//	/* Save a new record into socre table */
+//	ScoreBoard scoreBoard = new ScoreBoard(submisionID,  userID,  userName,  problemID,
+//			 completionResult,  executionResult,  score,  submissionDate,  language);
+//	scoreBoardRepo.save(scoreBoard);
+//	//System.out.println(scoreBoard);
+//	
+//	/* Updating user table */
+//	User user = new User(scoreBoard.getUserID(),scoreBoard.getUserName());
+//	//System.out.println(user);
+//	userRepo.save(user);
+//	
+//	/* Updating lead table */
+//	UserIDProblemIDkey userIDProblemIDkey = new UserIDProblemIDkey(scoreBoard.getUserID(),scoreBoard.getProblemID());
+//	LeadBoard tmp = leadBoardRepo.findById(userIDProblemIDkey).orElse(null);
+//	if(tmp == null) {
+//		LeadBoard leadBoard = new LeadBoard(scoreBoard.getUserID(), scoreBoard.getUserName(), scoreBoard.getSubmisionID(),
+//				scoreBoard.getProblemID(), scoreBoard.isCompletionResult(), scoreBoard.isExecutionResult(), 
+//				scoreBoard.getScore(), scoreBoard.getSubmissionDate(), scoreBoard.getLanguage());
+//		leadBoardRepo.save(leadBoard);
+//	}else if(tmp.getScore() < scoreBoard.getScore()){
+//		tmp.setSubmisionID(scoreBoard.getSubmisionID());
+//		tmp.setCompletionResult(scoreBoard.isCompletionResult());
+//		tmp.setExecutionResult(scoreBoard.isExecutionResult());
+//		tmp.setLanguage(scoreBoard.getLanguage());
+//		tmp.setSubmissionDate(scoreBoard.getSubmissionDate());
+//		tmp.setScore(scoreBoard.getScore());
+//		leadBoardRepo.save(tmp);
+//	}
+//	//return "inputdata";
+//}
+
+
+
+
 /***
  * 
  *

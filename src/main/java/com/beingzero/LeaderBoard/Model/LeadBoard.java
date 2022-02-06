@@ -1,8 +1,6 @@
 package com.beingzero.LeaderBoard.Model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
@@ -60,40 +58,7 @@ public class LeadBoard {
 		this.submissionDate = submissionDate;
 		this.language = language;
 	}
-
-/*
-	@Override
-	public String toString() {
-		return "LeadBoard [ID=" + ID + ", submisionID=" + submisionID + ", userID=" + userID + ", userName=" + userName
-				+ ", problemID=" + problemID + ", completionResult=" + completionResult + ", executionResult="
-				+ executionResult + ", score=" + score + ", submissionDate=" + submissionDate + ", language=" + language
-				+ "]";
-	}
 	
-	public LeadBoard(long iD, String submisionID, String userID, String userName, String problemID,
-			boolean completionResult, boolean executionResult, int score, String submissionDate, String language) {
-		super();
-		ID = iD;
-		this.submisionID = submisionID;
-		this.userID = userID;
-		this.userName = userName;
-		this.problemID = problemID;
-		this.completionResult = completionResult;
-		this.executionResult = executionResult;
-		this.score = score;
-		this.submissionDate = submissionDate;
-		this.language = language;
-	}
-
-
-	public long getID() {
-		return ID;
-	}
-
-	public void setID(long iD) {
-		ID = iD;
-	}
-*/
 	public String getSubmisionID() {
 		return submisionID;
 	}
