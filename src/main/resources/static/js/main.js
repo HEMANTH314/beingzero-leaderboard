@@ -39,9 +39,7 @@ $(document).ready(function() {
             api.rows().invalidate();
           } 
         } );
-    } );
-    
-$(document).ready(function() {
+        
         $('#example1').dataTable( {
         	//dom : 'lpf',
         	//pagingType : "simple",
@@ -80,4 +78,5 @@ $(document).ready(function() {
           } 
         } );
     } );
+    
     

@@ -30,7 +30,7 @@ public class UserIDProblemIDKey implements Serializable{
 
 	@Override
 	public String toString() {
-		return "UserIDContestIdProblemIDkey [userID=" + userID + ", problemID=" + problemID + "]";
+		return "UserIDContestIdProblemIDKey [userID=" + userID + ", problemID=" + problemID + "]";
 	}
 
 	/*
