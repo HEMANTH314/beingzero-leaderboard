@@ -2,7 +2,6 @@ package com.beingzero.LeaderBoard.Model;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,15 +19,12 @@ public class ScoreBoard {
 	
 	private String userName;
 	
-	private String contestID;
-	
 	private String problemID;
 	
 	private boolean completionResult;
 	
 	private boolean executionResult;
 	
-	@Column(columnDefinition = "int default 0")
 	private int score;
 	
 	private String submissionDate;
@@ -39,9 +35,9 @@ public class ScoreBoard {
 	@Override
 	public String toString() {
 		return "ScoreBoard [submisionID=" + submisionID + ", userID=" + userID + ", userName=" + userName
-				+ ", contestID=" + contestID + ", problemID=" + problemID + ", completionResult=" + completionResult
-				+ ", executionResult=" + executionResult + ", score=" + score + ", submissionDate=" + submissionDate
-				+ ", language=" + language + "]";
+				+ ", problemID=" + problemID + ", completionResult=" + completionResult + ", executionResult="
+				+ executionResult + ", score=" + score + ", submissionDate=" + submissionDate + ", language=" + language
+				+ "]";
 	}
 
 	public ScoreBoard() {
@@ -50,19 +46,22 @@ public class ScoreBoard {
 	}
 
 
-	public ScoreBoard(String submisionID, String userID, String userName, String contestID, String problemID,
+	public ScoreBoard(String submisionID, String userID, String userName, String problemID,
 			boolean completionResult, boolean executionResult, int score, String submissionDate, String language) {
 		super();
 		this.submisionID = submisionID;
 		this.userID = userID;
 		this.userName = userName;
-		this.contestID = contestID;
 		this.problemID = problemID;
 		this.completionResult = completionResult;
 		this.executionResult = executionResult;
 		this.score = score;
 		this.submissionDate = submissionDate;
 		this.language = language;
+	}
+
+	public String getSubmisionID() {
+		return submisionID;
 	}
 
 	public void setSubmisionID(String submisionID) {
@@ -83,18 +82,6 @@ public class ScoreBoard {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getContestID() {
-		return contestID;
-	}
-
-	public void setContestID(String contestID) {
-		this.contestID = contestID;
-	}
-
-	public String getSubmisionID() {
-		return submisionID;
 	}
 
 	public String getProblemID() {
@@ -147,8 +134,8 @@ public class ScoreBoard {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(completionResult, contestID, executionResult, language, problemID, score, submisionID,
-				submissionDate, userID, userName);
+		return Objects.hash(completionResult, executionResult, language, problemID, score, submisionID, submissionDate,
+				userID, userName);
 	}
 
 	@Override
@@ -160,10 +147,9 @@ public class ScoreBoard {
 		if (getClass() != obj.getClass())
 			return false;
 		ScoreBoard other = (ScoreBoard) obj;
-		return completionResult == other.completionResult && Objects.equals(contestID, other.contestID)
-				&& executionResult == other.executionResult && Objects.equals(language, other.language)
-				&& Objects.equals(problemID, other.problemID) && score == other.score
-				&& Objects.equals(submisionID, other.submisionID)
+		return completionResult == other.completionResult && executionResult == other.executionResult
+				&& Objects.equals(language, other.language) && Objects.equals(problemID, other.problemID)
+				&& score == other.score && Objects.equals(submisionID, other.submisionID)
 				&& Objects.equals(submissionDate, other.submissionDate) && Objects.equals(userID, other.userID)
 				&& Objects.equals(userName, other.userName);
 	}

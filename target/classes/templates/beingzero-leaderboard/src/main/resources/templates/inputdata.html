@@ -12,47 +12,43 @@
 			th:object="${scoreBoard}">
 			<table>
 				<tr>
-					<td><label> Submission ID </label></td>
+					<td><label>submision_ID</label></td>
 					<td><input type="text" th:field='*{submisionID}' /></td>
 				</tr>
 				<tr>
-					<td><label> User ID </label></td>
+					<td><label>user_ID</label></td>
 					<td><input type="text" th:field='*{userID}' /></td>
 				</tr>
 				<tr>
-					<td><label> User Name </label></td>
+					<td><label>user_Name</label></td>
 					<td><input type="text" th:field='*{userName}' /></td>
 				</tr>
 				<tr>
-					<td><label> Contest ID </label></td>
-					<td><input type="number" th:field='*{contestID}' /></td>
-				</tr>
-				<tr>
-					<td><label> Problem ID </label></td>
+					<td><label>problem_Id</label></td>
 					<td><input type="number" th:field='*{problemID}' /></td>
 				</tr>
 				<tr>
-					<td><label> Execution Result </label></td>
+					<td><label>Execution_Result</label></td>
 					<td><input type="text" th:field='*{executionResult}' /></td>
 				</tr>
 				<tr>
-					<td><label> Completion Result </label></td>
+					<td><label>Completion_Result</label></td>
 					<td><input type="text" th:field='*{completionResult}' /></td>
 				</tr>
 				<tr>
-					<td><label> Score </label></td>
+					<td><label>Score</label></td>
 					<td><input type="number" th:field='*{score}' /></td>
 				</tr>
 				<tr>
-					<td><label> Language </label></td>
+					<td><label>Language</label></td>
 					<td><input type="text" th:field='*{language}' /></td>
 				</tr>
 				<tr>
-					<td><label> Submission Date </label></td>
+					<td><label>Submission_Date</label></td>
 					<td><input type="datetime-local" th:field='*{submissionDate}' /></td>
 				</tr>
 				</table>
-				<button type="submit"> Add Data </button>
+				<button type="submit">Add Data</button>
 		</form>
 	</div>
 </body>

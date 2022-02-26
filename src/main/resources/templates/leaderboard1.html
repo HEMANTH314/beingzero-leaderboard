@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	
         <link href="//datatables.net/download/build/nightly/jquery.dataTables.css" rel="stylesheet" type="text/css" /> 
         <!-- <link href="/css/jquery.dataTables.css" rel="stylesheet" type="text/css" /> -->
  
         <script th:src="@{/js/jquery-1.9.1.min.js}"></script>
         <script th:src="@{/js/jquery.dataTables.js}"></script>
- 		<script type="text/javascript" src="../static/js/main.js"  th:src="@{/js/main.js}"></script>
+ 		<script type="text/javascript" th:src="@{/js/main.js}"></script>
         <meta charset=utf-8 />
         <title>BeingZero</title>
-        
     </head>
     <style type="text/css">
     	body {
@@ -19,35 +17,31 @@
 		  padding: 0;
 		  color: #333;
 		  background-color: #fff;
+		  
+		  width: 50%
 		}  	
     </style>
 
     <body width="80%">
         <div class="container">
-        	<h3 align = "center">[[${problemID}]]</h3>
-            <table id="example" class="display" >
+        	<h3 align = "center">[[${contestID}]]</h3>
+            <table id="example1" class="display" >
                 <thead>
                     <tr>
-                    	<th>Rank</th>
-                        <th>User ID</th>
-                        <th>User Name</th>
-                        <th>Completion Result</th>
-                        <th>Execution Result </th>
-                        <th>Score</th>
-                        <th>Language</th>
-                        <th>Submission Date</th>
+                    	<th> Rank </th>
+                        <th> User ID </th>
+                        <th> User Name </th>
+                        <th> Total Score </th>
+                        <th> Solved Problems </th>
                     </tr>
                 </thead>
 		        <tbody>
 		        <tr th:each="record : ${RankTable}">     
-		            <td data="rank"></td>
+		            <td data="rank" style="align-text:centere"></td>
 		            <td th:text="${record.userID}" data="userID"></td>
 		            <td th:text="${record.userName}" data="userName"></td>
-		            <td th:text="${record.completionResult}" data="completionResult"></td>
-		            <td th:text="${record.executionResult}" data="executionResult"></td>
-		            <td th:text="${record.score}" data="score" ></td>
-		            <td th:text="${record.language}" data="language"></td>
-		            <td th:text="${record.submissionDate}" data="submissionDate"></td>
+		            <td th:text="${record.score}" data="score"></td>
+		            <td th:text="${record.solvedProbelems}" data="solvedProbelems"></td>
 		        </tr>
 		        </tbody>
             </table>

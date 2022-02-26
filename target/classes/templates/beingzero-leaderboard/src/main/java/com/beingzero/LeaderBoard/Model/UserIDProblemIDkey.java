@@ -6,34 +6,31 @@ import java.io.Serializable;
 //import lombok.NoArgsConstructor;
 
 //@NoArgsConstructor
-public class UserIDProblemIDKey implements Serializable{
+public class UserIDProblemIDkey implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String userID;
 	private String problemID;
 	
 	
-	public UserIDProblemIDKey() {
+	public UserIDProblemIDkey() {
 		super();
 		// TODO Auto-generated constructor stub
-	}	
-	
-	public UserIDProblemIDKey(String userID, String problemID) {
+	}
+
+
+	public UserIDProblemIDkey(String userID, String problemID) {
 		super();
 		this.userID = userID;
 		this.problemID = problemID;
 	}
-	
+
 
 	@Override
 	public String toString() {
-		return "UserIDContestIdProblemIDkey [userID=" + userID + ", problemID=" + problemID + "]";
+		return "UserIDProblemIDkey [userID=" + userID + ", problemID=" + problemID + "]";
 	}
 
-	/*
+/*
 	@Override
 	public int hashCode() {
 		return Objects.hash(problemID, userID);

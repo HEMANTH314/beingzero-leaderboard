@@ -1,6 +1,5 @@
 package com.beingzero.LeaderBoard.Model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -8,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "LeadBoard")
-@IdClass(UserIDProblemIDKey.class)
+@IdClass(UserIDProblemIDkey.class)
 public class LeadBoard {
 	
 	@Id
@@ -26,7 +25,6 @@ public class LeadBoard {
 	
 	private boolean executionResult;
 	
-	@Column(columnDefinition = "int default 0")
 	private int score;
 	
 	private String submissionDate;
